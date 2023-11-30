@@ -150,11 +150,13 @@ class Aquarium:
                     self.__free_space -= fish.get_needed_space()
                     print(f"Fish {fish.get_name()} was dropped in the aquarium. Free space: \
 {round(self.__free_space, 3)}")
+
                 elif fish.get_agressive_status() == self.__is_agressive:
                     self.__fishes.append(fish)
                     self.__free_space -= fish.get_needed_space()
                     print(f"Fish {fish.get_name()} was dropped in the aquarium. Free space: \
 {round(self.__free_space, 3)}")
+
                 else:
                     if self.__is_agressive:
                         print(f"[!] cannot drop the fish in the aquarium {fish.get_name()}: \
@@ -162,6 +164,7 @@ aquarium is agressive while the fish is peacefull")
                     else:
                         print(f"[!] cannot drop the fish in the aquarium {fish.get_name()}: \
 aquarium is peacefull while the fish is agressive")
+
             else:
                 print(f"[!] Fish {fish.get_name()}({round(fish.get_needed_space(), 3)}) \
 cannot be dropped (available: {round(self.__free_space, 3)})")
