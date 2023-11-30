@@ -16,16 +16,19 @@ class Fish:
         self.__preffered_food = []
         self.__is_agressive = is_agressive
         self.__needed_space = needed_space
+
     def __del__(self):
         """
         Destructor
         """
-        #print(f"destroyed {self.__name}")
+        print(f"destroyed {self.__name}")
+
     def __str__(self):
         """
         Returns a string that contains a describtion of a fish
         """
-        return f'Рибка {self.__name}: вага {self.__size}кг, агресивна: {self.__is_agressive}'
+        return f'Fish {self.__name}: weight {self.__size}kg, is agressive: {self.__is_agressive}'
+
     def __repr__(self):
         """
         Returns a string that contains Fish object constructor
@@ -126,8 +129,8 @@ class Aquarium:
         """
         string
         """
-        return f"Рибки {', '.join([fish.get_name() for fish in self.__fishes])} в акваріумі на \
-{self.__total_volume} займають {self.__total_volume - self.__free_space}"
+        return f"Fish {', '.join([fish.get_name() for fish in self.__fishes])} in \
+{self.__total_volume} aquarium take {self.__total_volume - self.__free_space}"
 
     def __repr__(self):
         """
@@ -145,23 +148,23 @@ class Aquarium:
                     self.__is_agressive = fish.get_agressive_status()
                     self.__fishes.append(fish)
                     self.__free_space -= fish.get_needed_space()
-                    print(f"Рибку {fish.get_name()} закинуто в акваріум. Вільно: \
+                    print(f"Fish {fish.get_name()} was dropped in the aquarium. Free space: \
 {round(self.__free_space, 3)}")
                 elif fish.get_agressive_status() == self.__is_agressive:
                     self.__fishes.append(fish)
                     self.__free_space -= fish.get_needed_space()
-                    print(f"Рибку {fish.get_name()} закинуто в акваріум. Вільно: \
+                    print(f"Fish {fish.get_name()} was dropped in the aquarium. Free space: \
 {round(self.__free_space, 3)}")
                 else:
                     if self.__is_agressive:
-                        print(f"[!] в акваріум не можна закинути рибку {fish.get_name()}: \
-акваріум агресивний, рибка мирна")
+                        print(f"[!] cannot drop the fish in the aquarium {fish.get_name()}: \
+aquarium is agressive while the fish is peacefull")
                     else:
-                        print(f"[!] в акваріум не можна закинути рибку {fish.get_name()}: \
-акваріум мирний, рибка агресивна")
+                        print(f"[!] cannot drop the fish in the aquarium {fish.get_name()}: \
+aquarium is peacefull while the fish is agressive")
             else:
-                print(f"[!] Рибка {fish.get_name()}({round(fish.get_needed_space(), 3)}) \
-не влізе в акваріум! (вільно: {round(self.__free_space, 3)})")
+                print(f"[!] Fish {fish.get_name()}({round(fish.get_needed_space(), 3)}) \
+cannot be dropped (available: {round(self.__free_space, 3)})")
 
     def get_fishes(self):
         """
